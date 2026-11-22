@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="ne">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>विपन्न नागरिक सिफारिस मेकर</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mukta:wght@400;500;600;700&family=Noto+Serif+Devanagari:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar no-print">
+  <div class="brand">
+    <div class="brand-mark">वि</div>
+    <div>
+      <div class="brand-title">विपन्न नागरिक सिफारिस मेकर</div>
+      <div class="brand-sub" id="brand-sub">नगरपालिका / वडा कार्यालय</div>
+    </div>
+  </div>
+  <nav class="tabs">
+    <button data-view="form" class="active">＋ नयाँ निवेदन</button>
+    <button data-view="records">अभिलेख <span class="count" id="rec-count">0</span></button>
+    <button data-view="settings">सेटिङ</button>
+  </nav>
+</header>
+
+<main>
+<!-- ============ FORM ============ -->
+<section id="view-form" class="view active no-print">
+  <div class="view-head">
+    <h1 id="form-title">नयाँ निवेदन दर्ता</h1>
+    <p class="muted">एकपटक विवरण भर्नुहोस् — अनुसूची-२ फाराम, समितिको निर्णय र अस्पताललाई सिफारिस पत्र आफैं तयार हुन्छ। <span class="req">*</span> चिन्ह भएका अनिवार्य।</p>
+  </div>
+
+  <form id="rec-form" autocomplete="off">
+    <input type="hidden" name="id">
+
+    <fieldset class="card">
+      <legend><span class="step">१</span> बिरामीको वैयक्तिक विवरण</legend>
+      <div class="grid g4">
+        <label class="span2">बिरामीको नाम <span class="req">*</span><input name="name" required placeholder="जस्तै: ज्ञान कुमारी के.सी."></label>
+        <label>उमेर (वर्ष) <span class="req">*</span><input name="age" required inputmode="numeric" placeholder="६३"></label>
+        <div class="field"><span class="lbl">लिङ्ग <span class="req">*</span></span>
+          <div class="chips" data-radio="gender">
+            <label><input type="radio" name="gender" value="पुरुष" required><span>पुरुष</span></label>
+            <label><input type="radio" name="gender" value="महिला"><span>महिला</span></label>
+            <label><input type="radio" name="gender" value="अन्य"><span>अन्य</span></label>
+          </div>
+        </div>
+      </div>
+      <div class="grid g4">
+        <label>स्थायी जिल्ला<input name="perDistrict" list="dl-district"></label>
+        <label>स्थायी पालिका<input name="perPalika"></label>
+        <label>स्थायी वडा नं. <span class="req">*</span><input name="perWard" required inputmode="numeric" placeholder="७"></label>
+        <label>परिवार संख्या<input name="family" inputmode="numeric"></label>
+      </div>
+      <details class="sub">
+        <summary>अस्थायी ठेगाना फरक छ? (नभए स्थायी ठेगाना नै राखिन्छ)</summary>
+        <div class="grid g3">
+          <label>अस्थायी जिल्ला<input name="tmpDistrict" list="dl-district"></label>
+          <label>अस्थायी पालिका<input name="tmpPalika"></label>
+          <label>अस्थायी वडा नं.<input name="tmpWard" inputmode="numeric"></label>
+        </div>
+      </details>
+      <div class="field"><span class="lbl">जातीगत विवरण</span>
+        <div class="chips">
+          <label><input type="radio" name="caste" value="ब्राम्हण"><span>ब्राम्हण</span></label>
+          <label><input type="radio" name="caste" value="क्षेत्री"><span>क्षेत्री</span></label>
+          <label><input type="radio" name="caste" value="आदिवासी"><span>आदिवासी</span></label>
+          <label><input type="radio" name="caste" value="जनजाती"><span>जनजाती</span></label>
+          <label><input type="radio" name="caste" value="दलित"><span>दलित</span></label>
+          <label><input type="radio" name="caste" value="अल्पसंख्यक"><span>अल्पसंख्यक</span></label>
+          <label><input type="radio" name="caste" value="अन्य"><span>अन्य</span></label>
+        </div>
+      </div>
+      <div class="grid g3">
+        <label>नागरिकता प्र.नं.<input name="citNo" placeholder="३५०६"></label>
+        <label>जारी मिति (वि.सं.)<input name="citDate" class="bsdate" placeholder="२०४१-०१-२८"></label>
+        <label>जारी जिल्ला<input name="citDistrict" list="dl-district"></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="card">
+      <legend><span class="step">२</span> आय स्रोत र सम्पत्ति</legend>
+      <div class="grid g3">
+        <label>पेशा / परम्परागत<input name="occupation" list="dl-occupation" placeholder="परम्परागत कृषि"></label>
+        <label>रोजगारी (स्वदेशी/विदेशी)<input name="employment"></label>
+        <label>उद्यम / व्यवसाय<input name="business"></label>
+        <label>अनुमानित मासिक आय<input name="income"></label>
+        <label>घर/टहरा संख्या<input name="houses" inputmode="numeric"></label>
+        <div class="field"><span class="lbl">घरको किसिम</span>
+          <div class="chips">
+            <label><input type="radio" name="houseType" value="कच्ची"><span>कच्ची</span></label>
+            <label><input type="radio" name="houseType" value="पक्की"><span>पक्की</span></label>
+          </div>
+        </div>
+        <label>सवारी साधन<input name="vehicle" placeholder="नभए खाली"></label>
+        <label>बैंक मौज्दात<input name="bank"></label>
+        <label>सुन चाँदी<input name="gold"></label>
+        <label>नगद<input name="cash"></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="card">
+      <legend><span class="step">३</span> रोग र अस्पताल</legend>
+      <div class="field"><span class="lbl">रोगको किसिम <span class="req">*</span></span>
+        <div class="chips" id="disease-chips"></div>
+      </div>
+      <div class="grid g3">
+        <label>रोगको विस्तृत नाम (निदान)<input name="diseaseDetail" placeholder="जस्तै: Carcinoma of liver"></label>
+        <label>सिफारिस गरिने अस्पताल <span class="req">*</span><input name="hospital" required list="dl-hospital"></label>
+        <label>अस्पतालको विभाग / ठेगाना<input name="hospitalDept" placeholder="जस्तै: रिसर्च सेन्टर"></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="card">
+      <legend><span class="step">४</span> निवेदक र वडा सिफारिस</legend>
+      <div class="grid g4">
+        <label>निवेदकको नाम<input name="applicant" placeholder="खाली भए बिरामी आफैं"></label>
+        <label>ठेगाना<input name="applicantAddr"></label>
+        <label>सम्पर्क नं.<input name="phone" inputmode="tel"></label>
+        <label>निवेदन मिति<input name="appDate" class="bsdate"></label>
+        <label>सिफारिस गर्नेको नाम<input name="recName" placeholder="वडा अध्यक्षको नाम"></label>
+        <label>पद<input name="recPost" list="dl-recpost" value="वडा अध्यक्ष"></label>
+        <label>वडा सिफारिस मिति<input name="recDate" class="bsdate"></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="card accent">
+      <legend><span class="step">५</span> नगरपालिका प्रयोजन — निर्णय र चलानी</legend>
+      <div class="grid g4">
+        <label>समिति बैठक मिति<input name="meetingDate" class="bsdate"></label>
+        <label>पत्र मिति<input name="letterDate" class="bsdate"></label>
+        <label>चलानी नं. <small class="muted">(खाली = स्वतः)</small><input name="chalani" inputmode="numeric" placeholder="स्वतः"></label>
+        <div class="field"><span class="lbl">पत्र संख्या (आ.व.)</span><div class="readonly" id="fy-preview">—</div></div>
+      </div>
+    </fieldset>
+
+    <div class="actions sticky">
+      <button type="button" class="btn ghost" id="btn-clear">खाली गर्नुहोस्</button>
+      <button type="button" class="btn ghost" id="btn-sample" title="अभ्यास/परीक्षणका लागि नमुना विवरण भर्छ">✨ नमुना डाटा भर्नुहोस्</button>
+      <span class="spacer"></span>
+      <button type="submit" class="btn" data-next="stay">सेभ मात्र</button>
+      <button type="submit" class="btn primary" data-next="docs">सेभ गरी कागजात हेर्नुहोस् →</button>
+    </div>
+  </form>
+</section>
+
+<!-- ============ RECORDS ============ -->
+<section id="view-records" class="view no-print">
+  <div class="view-head row">
+    <div>
+      <h1>अभिलेख</h1>
+      <p class="muted">दर्ता भएका सबै निवेदनहरू। नाम, वडा, चलानी नं. वा अस्पतालबाट खोज्नुहोस्।</p>
+    </div>
+    <div class="row gap">
+      <select id="flt-fy"></select>
+      <input id="search" type="search" placeholder="खोज्नुहोस्…">
+    </div>
+  </div>
+  <div class="card table-wrap">
+    <table class="list">
+      <thead><tr>
+        <th>च.नं.</th><th>बिरामी</th><th>वडा</th><th>रोग</th><th>अस्पताल</th><th>बैठक मिति</th><th class="right">कार्य</th>
+      </tr></thead>
+      <tbody id="rec-body"></tbody>
+    </table>
+    <div id="rec-empty" class="empty">अहिलेसम्म कुनै अभिलेख छैन। “नयाँ निवेदन” बाट सुरु गर्नुहोस्।</div>
+  </div>
+</section>
+
+<!-- ============ DOCS ============ -->
+<section id="view-docs" class="view">
+  <div class="doc-toolbar no-print">
+    <button class="btn ghost" id="btn-back">← फिर्ता</button>
+    <div class="seg" id="doc-seg">
+      <button data-doc="annex">अनुसूची-२ (वडा फाराम)</button>
+      <button data-doc="decision">समितिको निर्णय</button>
+      <button data-doc="letter" class="active">अस्पताललाई सिफारिस पत्र</button>
+    </div>
+    <span class="spacer"></span>
+    <button class="btn" id="btn-edit">✎ सम्पादन</button>
+    <button class="btn primary" id="btn-print">🖨 प्रिन्ट</button>
+  </div>
+  <p class="doc-hint no-print" id="doc-hint"></p>
+  <div class="sheet-wrap"><div class="sheet" id="sheet"></div></div>
+</section>
+
+<!-- ============ SETTINGS ============ -->
+<section id="view-settings" class="view no-print">
+  <div class="view-head">
+    <h1>सेटिङ</h1>
+    <p class="muted">कार्यालयको विवरण एकपटक मिलाउनुहोस् — सबै कागजातमा स्वतः आउँछ। यो कम्प्युटरको ब्राउजरमा सुरक्षित हुन्छ।</p>
+  </div>
+  <form id="set-form" autocomplete="off">
+    <fieldset class="card">
+      <legend>कार्यालय / लेटरहेड</legend>
+      <div class="grid g3">
+        <label>पालिकाको नाम<input name="palika"></label>
+        <label>कार्यालय<input name="office"></label>
+        <label>शाखा<input name="branch"></label>
+        <label>ठेगाना (लाइन १)<input name="addr1"></label>
+        <label>ठेगाना (लाइन २)<input name="addr2"></label>
+        <label>पालिकाको छोटो नाम (बोधार्थमा)<input name="palikaShort"></label>
+        <label>पूर्वनिर्धारित जिल्ला<input name="district"></label>
+        <div class="field"><span class="lbl">लोगो (निशान छाप)</span>
+          <div class="row gap">
+            <img id="logo-prev" class="logo-prev" alt="">
+            <input type="file" id="logo-file" accept="image/*">
+            <button type="button" class="btn ghost sm" id="logo-clear">हटाउनुहोस्</button>
+          </div>
+        </div>
+        <label>यस आ.व.को सुरु चलानी नं.<input name="startChalani" inputmode="numeric"></label>
+      </div>
+    </fieldset>
+
+    <fieldset class="card">
+      <legend>समिति र हस्ताक्षरकर्ता</legend>
+      <div class="grid g2">
+        <label>सिफारिस समिति सदस्यहरू <small class="muted">(प्रति लाइन: भूमिका | नाम | पद)</small>
+          <textarea name="committee" rows="5"></textarea></label>
+        <div class="grid g1">
+          <label>पत्रमा हस्ताक्षर गर्ने — नाम<input name="signerName"></label>
+          <label>पद<input name="signerPost"></label>
+          <label>निर्देशिकाको नाम<input name="guideline"></label>
+        </div>
+      </div>
+    </fieldset>
+
+    <fieldset class="card">
+      <legend>पत्रका सूचीहरू</legend>
+      <div class="grid g3">
+        <label>संलग्न कागजातहरू <small class="muted">(प्रति लाइन एक)</small><textarea name="attachments" rows="6"></textarea></label>
+        <label>बोधार्थ <small class="muted">(बिरामी आफैं थपिन्छ)</small><textarea name="bodharth" rows="6"></textarea></label>
+        <label>अस्पतालहरूको सूची <small class="muted">(छनोटका लागि)</small><textarea name="hospitals" rows="6"></textarea></label>
+      </div>
+    </fieldset>
+
+    <div class="actions">
+      <button type="button" class="btn ghost" id="btn-export">⬇ ब्याकअप डाउनलोड</button>
+      <label class="btn ghost">⬆ ब्याकअप फिर्ता ल्याउनुहोस्<input type="file" id="import-file" accept=".json" hidden></label>
+      <span class="spacer"></span>
+      <button type="submit" class="btn primary">सेटिङ सेभ गर्नुहोस्</button>
+    </div>
+  </form>
+</section>
+</main>
+
+<datalist id="dl-district"></datalist>
+<datalist id="dl-hospital"></datalist>
+<datalist id="dl-occupation">
+  <option value="परम्परागत कृषि"><option value="कृषि"><option value="ज्याला मजदुरी"><option value="गृहिणी"><option value="बेरोजगार"><option value="सानो व्यापार">
+</datalist>
+<datalist id="dl-recpost">
+  <option value="वडा अध्यक्ष"><option value="वडा सचिव"><option value="का.वा. वडा अध्यक्ष">
+</datalist>
+
+<div id="toast" class="toast no-print"></div>
+<script src="app.js"></script>
+</body>
+</html>
